@@ -1,4 +1,16 @@
 <resources>
-    <string name="app_name">SeeCloud</string>
+    <string name="app_name">析云</string>
     <string name="main_activity_guide_text">请点击加号按钮设置评测指标权重</string>
+    <string name="drawer_open">弹出侧边栏</string>
+    <string name="drawer_closed">收起侧边栏</string>
+    <string name="attr_connectingTime">建立连接时间</string>
+    <string name="attr_firstPackageTime">首包时间</string>
+    <string name="attr_firstScreenTime">首屏时间</string>
+    <string name="attr_totalDownloadTime">总下载时间</string>
+    <string name="attr_applicationServerResponseTime">应用服务器响应时间</string>
+    <string name="attr_CPUusage">CPU使用率</string>
+    <string name="attr_databaseCallingTime">数据库调用时间</string>
+    <string name="attr_ApdexIndex">Apdex指标</string>
+    <string name="attr_serverMemoryTakeup">服务器内存占用</string>
+    <string name="TingyunComprehensiveRanking">听云综合排行</string>
 </resources>

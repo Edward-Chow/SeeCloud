@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/weight_setting_area"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/windowBackground">
+
+    <TextView
+        android:id="@+id/attr_name"
+        android:text="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/textColorPrimary"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/attr_intro"
+        android:text="sdakjfakjfa slfjalksfj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="@color/textColorPrimary"
+        android:layout_below="@+id/attr_name"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="28sp"
+        android:paddingRight="28sp"
+        />
+
+    <SeekBar
+        android:id="@+id/seek_bar_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/attr_intro"
+        android:layout_centerHorizontal="true"/>
+
+    <com.jaygoo.widget.RangeSeekBar
+        android:id="@+id/seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/attr_intro"
+        android:paddingLeft="28sp"
+        android:paddingRight="28sp"
+        android:layout_centerHorizontal="true"
+        app:markTextArray="@array/markArray"
+        app:lineColorSelected="@color/colorAccent"
+        app:seekBarResId="@drawable/seekbar_thumb"
+        app:lineColorEdge="@color/textColorPrimary"
+        app:cellMode="number"
+        app:seekBarMode="single"
+        />
+</RelativeLayout>

@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.stepstone.stepper.StepperLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/stepperLayout"
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    android:background="@color/windowBackground"
     android:orientation="vertical"
-    app:ms_showBackButtonOnFirstStep="true"
-    app:ms_stepperType="progress_bar"
-    app:ms_backButtonColor="@color/textColorPrimary"
-    app:ms_nextButtonColor="@color/textColorPrimary"
-    tools:layout_editor_absoluteY="8dp"
-    tools:layout_editor_absoluteX="8dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-</com.stepstone.stepper.StepperLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/textColorPrimary"
+            android:text="权重设置"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_back"/>
+    </RelativeLayout>
+
+    <com.stepstone.stepper.StepperLayout
+        android:id="@+id/stepperLayout"
+        android:layout_width="match_parent"
+        android:layout_height="610dp"
+        android:background="@color/windowBackground"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        app:ms_showBackButtonOnFirstStep="true"
+        app:ms_stepperType="dots"
+        app:ms_bottomNavigationBackground="@color/navigationBarColor"
+        app:ms_activeStepColor="@color/colorPrimary"
+        app:ms_inactiveStepColor="#FFFFFF"
+        app:ms_backButtonColor="@color/textColorPrimary"
+        app:ms_nextButtonColor="@color/textColorPrimary"
+        app:ms_completeButtonColor="@color/colorAccent"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
+    </com.stepstone.stepper.StepperLayout>
+</LinearLayout>

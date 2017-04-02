@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -51,16 +52,30 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this,
+                drawerLayout, toolbar, 0, 0);
+        drawerToggle.syncState();
+
         ActionBar ab = this.getSupportActionBar();
         if (ab != null) {
             ab.setHomeAsUpIndicator(R.mipmap.ic_menu);
             ab.setDisplayHomeAsUpEnabled(true);
         }
+
         navigationView.setCheckedItem(R.id.nav_calculate);
         //navagationbar监听事件
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_calculate:
+                        break;
+                    case R.id.nav_rank:
+                        break;
+                    case R.id.nav_about:
+                        break;
+                }
+
                 item.setChecked(true);
                 drawerLayout.closeDrawers();
                 return true;
@@ -69,12 +84,12 @@ public class MainActivity extends AppCompatActivity {
 
         submitButton = (SubmitButton) findViewById(R.id.submitButton);
         //submit按钮监听事件
-        /*submitButton.setOnClickListener(new View.OnClickListener() {
+        submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //计算信誉度并跳转图表界面
             }
-        });*/
+        });
 
         actionButton = (ActionButton) findViewById(R.id.action_button);
         //权重设置按钮监听事件
@@ -84,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 //跳转权重设置界面
                 Intent intent = new Intent(MainActivity.this, WeightSettingActivity.class);
                 startActivity(intent);
-                MainActivity.this.finish();
             }
         });
     }
