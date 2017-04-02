@@ -1,0 +1,22 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="StepTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="ms_stepperStyle">@style/DotStepperStyle</item>
+    </style>
+
+    <style name="DotStepperStyle">
+        <item name="ms_stepperType">dots</item>
+        <item name="ms_activeStepColor">@color/colorPrimary</item>
+        <item name="ms_inactiveStepColor">#FFFFFF</item>
+        <item name="ms_bottomNavigationBackground">@color/navigationBarColor</item>
+    </style>
+
+</resources>

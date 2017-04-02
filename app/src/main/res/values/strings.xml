@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SeeCloud</string>
+    <string name="main_activity_guide_text">请点击加号按钮设置评测指标权重</string>
+</resources>

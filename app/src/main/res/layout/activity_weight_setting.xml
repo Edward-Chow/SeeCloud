@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.stepstone.stepper.StepperLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/stepperLayout"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:background="@color/windowBackground"
+    android:orientation="vertical"
+    app:ms_showBackButtonOnFirstStep="true"
+    app:ms_stepperType="progress_bar"
+    app:ms_backButtonColor="@color/textColorPrimary"
+    app:ms_nextButtonColor="@color/textColorPrimary"
+    tools:layout_editor_absoluteY="8dp"
+    tools:layout_editor_absoluteX="8dp">
+
+</com.stepstone.stepper.StepperLayout>

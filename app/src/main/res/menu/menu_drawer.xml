@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_calculate"
+            android:icon="@drawable/nav_calculate"
+            android:title="可信度计算"/>
+        <item
+            android:id="@+id/nav_rank"
+            android:icon="@drawable/nav_rank"
+            android:title="云服务排行"/>
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/nav_about"
+            android:title="关  于"/>
+    </group>
+
+</menu>
