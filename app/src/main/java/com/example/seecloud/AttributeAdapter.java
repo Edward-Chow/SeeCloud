@@ -32,7 +32,6 @@ public class AttributeAdapter extends RecyclerView.Adapter<AttributeAdapter.View
             cardView=(CardView)view;
             AttriImage = (ImageView) view.findViewById(R.id.attr_image);
             AttriName = (TextView) view.findViewById(R.id.attr_rank_name);
-            AttriInstr = (TextView) view.findViewById(R.id.attr_instruction);
         }
     }
 

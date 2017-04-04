@@ -71,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_calculate:
                         break;
                     case R.id.nav_rank:
+                        Intent intent = new Intent(MainActivity.this, RankActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.nav_about:
                         break;

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jaygoo.widget.RangeSeekBar;
 import com.stepstone.stepper.Step;
@@ -26,8 +27,9 @@ public class StepFragment extends Fragment implements Step{
 
     private TextView attribute_intro;
 
-    private RangeSeekBar seekBar;
     private SeekBar seekBar1;
+
+    private TextView value;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -36,7 +38,27 @@ public class StepFragment extends Fragment implements Step{
         //UI初始化
         attribute_name = (TextView) view.findViewById(R.id.attr_name);
         attribute_intro = (TextView) view.findViewById(R.id.attr_intro);
-        seekBar = (RangeSeekBar) view.findViewById(R.id.seek_bar);
+        seekBar1 = (SeekBar) view.findViewById(R.id.seek_bar_1);
+        value = (TextView) view.findViewById(R.id.text_value);
+
+        seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // 当拖动条的滑块位置发生改变时触发该方法,在这里直接使用参数progress，即当前滑块代表的进度值
+                value.setText("Value:" + Integer.toString(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                //取得滑块停止时的值作为权重
+                int weight = Integer.parseInt(String.valueOf(seekBar1.getProgress()));
+            }
+        });
         return view;
     }
 

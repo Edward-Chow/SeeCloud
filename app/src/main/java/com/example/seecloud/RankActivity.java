@@ -44,6 +44,7 @@ public class RankActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.rank_toolbar);
         setSupportActionBar(toolbar);
 
+        initAttributes();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
@@ -53,6 +54,21 @@ public class RankActivity extends AppCompatActivity {
 
     private void initAttributes() {
         //数据初始化
+        Attribute attributes[] = {
+                new Attribute("建联时间", R.drawable.connectingtime),
+                new Attribute("首包时间", R.drawable.firstpackagetime),
+                new Attribute("首屏时间", R.drawable.firstscreentime),
+                new Attribute("总下载时间", R.drawable.totaldownloadtime),
+                new Attribute("应用服务器响应时间", R.drawable.applicationserverresponsetime),
+                new Attribute("CPU使用率", R.drawable.cpuusage),
+                new Attribute("数据库调用时间", R.drawable.databasecallingtime),
+                new Attribute("Apdex指标", R.drawable.apdex),
+                new Attribute("服务器内存占用", R.drawable.servermemorytakeup),
+                new Attribute("听云综合排行", R.drawable.tingyuncomprehensiveranking)
+        };
+        for (Attribute attr: attributes) {
+            attributeList.add(attr);
+        }
     }
 
     @Override
