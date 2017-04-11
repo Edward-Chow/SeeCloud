@@ -1,6 +1,7 @@
 package com.example.seecloud;
 
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -39,7 +40,21 @@ public class StepFragment extends Fragment implements Step{
 
     private List<Attribute> attributes = new ArrayList<>();
 
+    private Attribute attribute;
+
     private int weight;
+
+    public static StepFragment newInstance(@LayoutRes int layoutResId) {
+        //attribute = a;
+        Bundle args = new Bundle();
+        args.putInt("messageResourceId", layoutResId);
+        StepFragment stepFragment = new StepFragment();
+        stepFragment.setArguments(args);
+        return stepFragment;
+    }
+    public void setAttribute(Attribute attribute) {
+        this.attribute = attribute;
+    }
 
 
     @Nullable
@@ -53,6 +68,11 @@ public class StepFragment extends Fragment implements Step{
         seekBar1 = (SeekBar) view.findViewById(R.id.seek_bar_1);
         value = (TextView) view.findViewById(R.id.text_value);
 
+        position = getArguments().getInt("weight_position");
+        InitAttribute initAttribute = new InitAttribute();
+        attributes.addAll(initAttribute.getAttributes());
+        attribute_name.setText(attribute.getName());
+        attribute_intro.setText(attribute.getInstruction());
 
         seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -75,7 +95,42 @@ public class StepFragment extends Fragment implements Step{
         return view;
     }
 
-    @Override
+    /*@Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        attribute_name = (TextView) view.findViewById(R.id.attr_name);
+        attribute_intro = (TextView) view.findViewById(R.id.attr_intro);
+        seekBar1 = (SeekBar) view.findViewById(R.id.seek_bar_1);
+        value = (TextView) view.findViewById(R.id.text_value);
+
+        position = getArguments().getInt("weight_position");
+        InitAttribute initAttribute = new InitAttribute();
+        attributes.addAll(initAttribute.getAttributes());
+        attribute_name.setText(attributes.get(position).getName());
+        attribute_intro.setText(attributes.get(position).getInstruction());
+
+        seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // 当拖动条的滑块位置发生改变时触发该方法,在这里直接使用参数progress，即当前滑块代表的进度值
+                value.setText("Value:" + Integer.toString(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                //取得滑块停止时的值作为权重
+                weight = Integer.parseInt(String.valueOf(seekBar1.getProgress()));
+            }
+        });
+    }*/
+
+   /* @Override
     public void onStart() {
         super.onStart();
         if (isAdded()) {
@@ -85,7 +140,7 @@ public class StepFragment extends Fragment implements Step{
             attribute_name.setText(attributes.get(position).getName());
             attribute_intro.setText(attributes.get(position).getInstruction());
         }
-    }
+    }*/
 
     @Override
     public VerificationError verifyStep() {
