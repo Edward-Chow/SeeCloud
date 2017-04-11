@@ -39,6 +39,8 @@ public class StepFragment extends Fragment implements Step{
 
     private List<Attribute> attributes = new ArrayList<>();
 
+    private int weight;
+
 
     @Nullable
     @Override
@@ -67,7 +69,7 @@ public class StepFragment extends Fragment implements Step{
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 //取得滑块停止时的值作为权重
-                int weight = Integer.parseInt(String.valueOf(seekBar1.getProgress()));
+                weight = Integer.parseInt(String.valueOf(seekBar1.getProgress()));
             }
         });
         return view;
@@ -100,5 +102,9 @@ public class StepFragment extends Fragment implements Step{
     @Override
     public void onError(@NonNull VerificationError error) {
         //handle error inside of the fragment, e.g. show error on EditText
+    }
+
+    public int getWeight() {
+        return weight;
     }
 }

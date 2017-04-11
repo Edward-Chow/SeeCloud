@@ -53,7 +53,7 @@ public class InitCloudServer {
         liantong.initAttr(0.219, 0.403, 2.628, 13.74, 579.2, 0.794, 4.856, 0.8757, 858, 12);
         tianyi.initAttr(0.082, 0.287, 2.24, 12.606, 528.2, 0.554, 0.115, 0.9695, 3200, 11);
         CloudServer cloudServer[] = {
-                jinshan, qingyun, tengxun, UnitedStack, UCloud, huawei, baidu, microsoft, aws_china, ali, yidong, tianyi
+                jinshan, qingyun, tengxun, UnitedStack, UCloud, huawei, baidu, microsoft, aws_china, ali, yidong, liantong, tianyi
         };
         for (CloudServer cloud:cloudServer
              ) {
