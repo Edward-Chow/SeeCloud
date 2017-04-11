@@ -75,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.nav_about:
+                        Intent intent1 = new Intent(MainActivity.this, AboutActivity.class);
+                        startActivity(intent1);
+                        break;
+                    default:
                         break;
                 }
 

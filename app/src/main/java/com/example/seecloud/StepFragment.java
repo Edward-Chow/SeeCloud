@@ -11,10 +11,14 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.seecloud.database.Attribute;
+import com.example.seecloud.database.InitAttribute;
 import com.jaygoo.widget.RangeSeekBar;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.Inflater;
 
 /**
@@ -30,6 +34,12 @@ public class StepFragment extends Fragment implements Step{
     private SeekBar seekBar1;
 
     private TextView value;
+
+    private int position;
+
+    private List<Attribute> attributes = new ArrayList<>();
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,6 +50,7 @@ public class StepFragment extends Fragment implements Step{
         attribute_intro = (TextView) view.findViewById(R.id.attr_intro);
         seekBar1 = (SeekBar) view.findViewById(R.id.seek_bar_1);
         value = (TextView) view.findViewById(R.id.text_value);
+
 
         seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -63,6 +74,18 @@ public class StepFragment extends Fragment implements Step{
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        if (isAdded()) {
+            position = getArguments().getInt("weight_position");
+            InitAttribute initAttribute = new InitAttribute();
+            attributes.addAll(initAttribute.getAttributes());
+            attribute_name.setText(attributes.get(position).getName());
+            attribute_intro.setText(attributes.get(position).getInstruction());
+        }
+    }
+
+    @Override
     public VerificationError verifyStep() {
         //return null if the user can go to the next step, create a new VerificationError instance otherwise
         return null;
@@ -71,6 +94,7 @@ public class StepFragment extends Fragment implements Step{
     @Override
     public void onSelected() {
         //update UI when selected
+
     }
 
     @Override

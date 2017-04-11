@@ -18,7 +18,9 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".WeightSettingActivity" />
-        <activity android:name=".RankActivity"></activity>
+        <activity android:name=".RankActivity" />
+        <activity android:name=".ChartActivity" />
+        <activity android:name=".AboutActivity"></activity>
     </application>
 
 </manifest>

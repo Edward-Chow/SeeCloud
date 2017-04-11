@@ -34,7 +34,7 @@ public class MyStepperAdapter extends AbstractFragmentStepAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 10;
     }
 
     @NonNull

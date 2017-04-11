@@ -9,11 +9,22 @@ public class Attribute {
     private String instruction;
     private int imageId;
 
+    private double number;
+
     public Attribute(String name, int ImageId) {
         this.name = name;
         this.imageId = ImageId;
     }
 
+    public Attribute(String name, double number) {
+        this.name = name;
+        this.number = number;
+    }
+
+    public Attribute(String name, String instruction) {
+        this.name = name;
+        this.instruction = instruction;
+    }
 
     public String getName() {
         return name;
@@ -37,5 +48,13 @@ public class Attribute {
 
     public void setImageId(int imageId) {
         this.imageId = imageId;
+    }
+
+    public double getNumber() {
+        return number;
+    }
+
+    public void setNumber(double number) {
+        this.number = number;
     }
 }

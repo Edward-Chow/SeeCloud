@@ -48,7 +48,9 @@ public class WeightSettingActivity extends AppCompatActivity implements StepperL
                 startActivity(intent);
             }
         });
+
     }
+
 
     @Override
     public void onBackPressed() {
@@ -75,6 +77,10 @@ public class WeightSettingActivity extends AppCompatActivity implements StepperL
     public void onStepSelected(int newStepPosition) {
         Toast.makeText(this, "onStepSelected! -> " +
                 newStepPosition, Toast.LENGTH_SHORT).show();
+        Bundle bundle = new Bundle();
+        bundle.putInt("weight_position", stepperLayout.getCurrentStepPosition());
+        StepFragment stepFragment = new StepFragment();
+        stepFragment.setArguments(bundle);
     }
 
     @Override
