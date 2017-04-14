@@ -51,15 +51,15 @@ public class MyStepperAdapter extends AbstractFragmentStepAdapter {
         step6 = StepFragment.newInstance(R.layout.weight_setting_area);
         step7 = StepFragment.newInstance(R.layout.weight_setting_area);
         step8 = StepFragment.newInstance(R.layout.weight_setting_area);
-        step0.setAttribute(attribute.get(0));
-        step1.setAttribute(attribute.get(1));
-        step2.setAttribute(attribute.get(2));
-        step3.setAttribute(attribute.get(3));
-        step4.setAttribute(attribute.get(4));
-        step5.setAttribute(attribute.get(5));
-        step6.setAttribute(attribute.get(6));
-        step7.setAttribute(attribute.get(7));
-        step8.setAttribute(attribute.get(8));
+        step0.setAttribute(attribute.get(0)).setPosition(0);
+        step1.setAttribute(attribute.get(1)).setPosition(1);
+        step2.setAttribute(attribute.get(2)).setPosition(2);
+        step3.setAttribute(attribute.get(3)).setPosition(3);
+        step4.setAttribute(attribute.get(4)).setPosition(4);
+        step5.setAttribute(attribute.get(5)).setPosition(5);
+        step6.setAttribute(attribute.get(6)).setPosition(6);
+        step7.setAttribute(attribute.get(7)).setPosition(7);
+        step8.setAttribute(attribute.get(8)).setPosition(8);
     }
 
 

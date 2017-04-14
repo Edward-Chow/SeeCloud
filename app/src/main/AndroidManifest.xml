@@ -20,7 +20,8 @@
         <activity android:name=".WeightSettingActivity" />
         <activity android:name=".RankActivity" />
         <activity android:name=".ChartActivity" />
-        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".CredibilityRankActivity"></activity>
     </application>
 
 </manifest>

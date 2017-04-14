@@ -34,7 +34,7 @@
     <com.stepstone.stepper.StepperLayout
         android:id="@+id/stepperLayout"
         android:layout_width="match_parent"
-        android:layout_height="610dp"
+        android:layout_height="wrap_content"
         android:background="@color/windowBackground"
         android:orientation="vertical"
         android:layout_gravity="bottom"

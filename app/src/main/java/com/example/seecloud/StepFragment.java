@@ -1,10 +1,15 @@
 package com.example.seecloud;
 
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +49,12 @@ public class StepFragment extends Fragment implements Step{
 
     private int weight;
 
+    private SharedPreferences preferences;
+
+    private SharedPreferences.Editor editor;
+
+    private boolean commit;
+
     public static StepFragment newInstance(@LayoutRes int layoutResId) {
         //attribute = a;
         Bundle args = new Bundle();
@@ -52,8 +63,9 @@ public class StepFragment extends Fragment implements Step{
         stepFragment.setArguments(args);
         return stepFragment;
     }
-    public void setAttribute(Attribute attribute) {
+    public StepFragment setAttribute(Attribute attribute) {
         this.attribute = attribute;
+        return this;
     }
 
 
@@ -62,13 +74,14 @@ public class StepFragment extends Fragment implements Step{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.weight_setting_area, container, false);
 
+        preferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
         //UI初始化
         attribute_name = (TextView) view.findViewById(R.id.attr_name);
         attribute_intro = (TextView) view.findViewById(R.id.attr_intro);
         seekBar1 = (SeekBar) view.findViewById(R.id.seek_bar_1);
         value = (TextView) view.findViewById(R.id.text_value);
 
-        position = getArguments().getInt("weight_position");
+        //position = getArguments().getInt("weight_position");
         InitAttribute initAttribute = new InitAttribute();
         attributes.addAll(initAttribute.getAttributes());
         attribute_name.setText(attribute.getName());
@@ -90,10 +103,34 @@ public class StepFragment extends Fragment implements Step{
             public void onStopTrackingTouch(SeekBar seekBar) {
                 //取得滑块停止时的值作为权重
                 weight = Integer.parseInt(String.valueOf(seekBar1.getProgress()));
+                editor = preferences.edit();
+                editor.putInt(Integer.toString(position), weight);
+                Log.e(Integer.toString(position), Integer.toString(weight));
+                commit = editor.commit();
+                if (!commit) {
+                     dialog();
+                }
             }
         });
         return view;
     }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    protected void dialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
+        builder.setMessage("权重未成功提交");
+        builder.setTitle("提示");
+        builder.setPositiveButton("知道了", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+    }
+
 
     /*@Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

@@ -65,6 +65,9 @@ public class WeightSettingActivity extends AppCompatActivity implements StepperL
     @Override
     public void onCompleted(View completeButton) {
         Toast.makeText(this, "onCompleted!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(WeightSettingActivity.this, MainActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 
     @Override
@@ -79,8 +82,7 @@ public class WeightSettingActivity extends AppCompatActivity implements StepperL
                 newStepPosition, Toast.LENGTH_SHORT).show();
         Bundle bundle = new Bundle();
         bundle.putInt("weight_position", stepperLayout.getCurrentStepPosition());
-        StepFragment stepFragment = new StepFragment();
-        stepFragment.setArguments(bundle);
+
     }
 
     @Override
