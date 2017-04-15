@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
 
-    private int weight[] = new int[9];
+    private int weight[] = new int[20];
 
 
     @Override

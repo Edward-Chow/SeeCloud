@@ -44,10 +44,39 @@ public class InitAttribute {
     private Attribute tingyunRank =
             new Attribute("听云排行", "tingyun.com给出的年度综合公有云服务排行榜提供的可参考性");
 
+    private Attribute financialStrenth =
+            new Attribute("资金实力", "企业为进行生产经营活动而有权长期独立支配和注用的自有资金，和企业依靠自有资金抵御外界环境变化的资金优势或能力");
+
+    private Attribute operationStatus =
+            new Attribute("运营状况", "企业运营状况是指企业的产品在商品市场上进行销售、服务的发展现状");
+
+    private Attribute industryExp =
+            new Attribute("业内经验", "企业经营企业的主要业务的经验和历史");
+
+    private Attribute techRerverse =
+            new Attribute("技术储备", "企业对于设备设施以及人才方面的储备情况");
+
+    private Attribute qos =
+            new Attribute("服务质量", "企业的网络能够利用各种基础技术，为指定的网络通信提供更好的服务能力, 是网络的一种安全机制， 是用来解决网络延迟和阻塞等问题的一种技术");
+
+    private Attribute charges =
+            new Attribute("收费情况", "企业对于服务以及其增值业务的收费情况");
+
+    private Attribute dataSafety =
+            new Attribute("数据安全", "企业为数据处理系统建立和采用的技术和管理的安全保护，保护计算机硬件、软件和数据不因偶然和恶意的原因遭到破坏、更改和泄露的能力");
+
+    private Attribute desMatch =
+            new Attribute("描述相符", "企业提供的产品和服务相比其宣传的内容的相似度");
+
+    private Attribute rightPro =
+            new Attribute("权益保障", "企业对于用户售后等固有权利的保障程度");
+
+
     public InitAttribute() {
         Attribute attribute[] = new Attribute[] {
             connectingTime, firstPackageTime, firstScreenTime, totalDownloadTime, applicationServerResponseTime,
-                cpuUsage, databaseCallingTime, apdex, serverMemoryTakeUp, tingyunRank
+                cpuUsage, databaseCallingTime, apdex, serverMemoryTakeUp,financialStrenth, operationStatus, industryExp, techRerverse,
+                qos, charges, dataSafety, desMatch, rightPro
         };
         for (Attribute attr:attribute) {
             attributes.add(attr);

@@ -33,6 +33,8 @@ import java.util.zip.Inflater;
 
 public class StepFragment extends Fragment implements Step{
 
+    private TextView type;
+
     private TextView attribute_name;
 
     private TextView attribute_intro;
@@ -76,17 +78,27 @@ public class StepFragment extends Fragment implements Step{
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
         //UI初始化
+        type = (TextView) view.findViewById(R.id.type_name);
         attribute_name = (TextView) view.findViewById(R.id.attr_name);
         attribute_intro = (TextView) view.findViewById(R.id.attr_intro);
         seekBar1 = (SeekBar) view.findViewById(R.id.seek_bar_1);
         value = (TextView) view.findViewById(R.id.text_value);
 
         //position = getArguments().getInt("weight_position");
+        if (position <= 8) {
+            type.setText("客观指标");
+        } else if (position <= 17) {
+            type.setText("主观指标");
+        } else if (position == 18) {
+            type.setText("综合可信度客观占比");
+        } else if (position == 19) {
+            type.setText("综合可信度主观占比");
+        }
         InitAttribute initAttribute = new InitAttribute();
-        attributes.addAll(initAttribute.getAttributes());
-        attribute_name.setText(attribute.getName());
-        attribute_intro.setText(attribute.getInstruction());
-
+        if (position < 18) {
+            attribute_name.setText(attribute.getName());
+            attribute_intro.setText(attribute.getInstruction());
+        }
         seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

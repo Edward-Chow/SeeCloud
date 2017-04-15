@@ -26,8 +26,14 @@ public class CredibilityCalculate {
     private double[][] X;
     //规范决策矩阵
     private double[][] Z;
-    //权重
+    //客观权重
     private double[] W;
+    //主观权重
+    private double[] W_;
+    //客观属性占比权重
+    private double Mo;
+    //主观属性占比权重
+    private double Ms;
     //正理想解数组 属性个数
     private double[] Apositive;
     //负理想解数组
@@ -46,8 +52,6 @@ public class CredibilityCalculate {
     private static final int Objective_Attribute_Numbers = 9;
     //主观属性个数
     private static final int Subjective_Attribute_Numbers = 9;
-    //暂定主观可信度权重
-    private static final double Subjective_Credebility_Weight = 0.2;
     //主观可信度 云服务提供商个数
     private double[][] subjectiveCre = new double[CLoud_Server_Numbers][3];
     //云滴数字特征Ex En He
@@ -63,25 +67,36 @@ public class CredibilityCalculate {
     private List<CloudServer> cloudServerList = new ArrayList<>();
 
     public CredibilityCalculate(int[] weights) {
+        Mo = weights[weights.length-2];
+        Ms = weights[weights.length-1];
+        double os = Mo + Ms;
+        Mo = Mo / os;
+        Ms = Ms / os;
         //按照用户设置值宠幸分配权重
         double sum = 0.0;
         double temp = 0.0;
-        for (int i = 0; i < weights.length; i++) {
+        for (int i = 0; i < Objective_Attribute_Numbers; i++) {
             sum += weights[i];
             Log.e("weight", Double.toString(weights[i]));
         }
         //暂定主客观权重 主观2成 客观8成
-        temp = 0.8 / sum;
+        temp = Mo / sum;
         double sumw = 0.0;
-        W = new double[weights.length];
-        for (int i = 0; i < W.length; i++) {
+        W = new double[Objective_Attribute_Numbers];
+        for (int i = 0; i < Objective_Attribute_Numbers; i++) {
             W[i] = temp * weights[i];
             //Log.e("Wi", Double.toString(W[i]));
         }
-        for (int i = 0; i < W.length; i++) {
-            sumw += W[i];
+
+        //重分配主观权重
+        sum = 0.0;
+        for (int i = Objective_Attribute_Numbers; i < Objective_Attribute_Numbers + Subjective_Attribute_Numbers; i++) {
+            sum += weights[i];
         }
-        //Log.e("sumw", sumw+"");
+        W_ = new double[Subjective_Attribute_Numbers];
+        for (int i = Objective_Attribute_Numbers; i < Objective_Attribute_Numbers + Subjective_Attribute_Numbers; i++) {
+            W_[i-9] = weights[i] / sum;
+        }
 
         //计算主观信任度，初始化主观可信度数组
         for (int k = 0; k < CLoud_Server_Numbers; k++) {
@@ -138,8 +153,8 @@ public class CredibilityCalculate {
                 Apositive[i] = getColumnMin(Xj);
                 Anegative[i] = getColumnMax(Xj);
             }
-            Log.e("Apositive", Apositive[i]+"");
-            Log.e("Anegative", Anegative[i]+"");
+            //Log.e("Apositive", Apositive[i]+"");
+            //Log.e("Anegative", Anegative[i]+"");
         }
 
         //计算与最优方案以及最劣方案的距离
@@ -182,18 +197,18 @@ public class CredibilityCalculate {
 
     //计算一个云服务商的云模型参数
     public double[] calculateCloudModel(double[][] attr) {
-        double ex, en, he;
-        double temp = Math.pow(0.1, 2) * 8 + Math.pow(0.2, 2);
-        ex = 0.1 * (attr[0][0]+attr[1][0]+attr[2][0]+attr[3][0]+attr[4][0]+attr[5][0]+attr[7][0]+attr[8][0]) + 0.2 * attr[6][0];
+        double ex = 0.0, en, he;
+        double temp = 0.0;
+        for (int i = 0; i < Subjective_Attribute_Numbers; i++) {
+            temp += Math.pow(W_[i], 2);
+        }
+        for (int i = 0; i < Subjective_Attribute_Numbers; i++) {
+            ex += W_[i] * attr[i][0];
+        }
         double sum1 = 0.0, sum2 = 0.0;
-        for (int i = 0; i < 9; i++) {
-            if (i == 6) {
-                sum1 += attr[6][1] * Math.pow(0.2, 2);
-                sum2 += attr[6][2] * Math.pow(0.2, 2);
-            } else {
-                sum1 += attr[i][1] * Math.pow(0.1, 2);
-                sum2 += attr[i][2] * Math.pow(0.1, 2);
-            }
+        for (int i = 0; i < Subjective_Attribute_Numbers; i++) {
+            sum1 += attr[i][1] * Math.pow(W_[i], 2);
+            sum2 += attr[i][2] * Math.pow(W_[i], 2);
         }
         en = sum1 / temp;
         he = sum2 / temp;
